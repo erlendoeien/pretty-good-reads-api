@@ -1,8 +1,10 @@
-# Pretty good reads
+# Pretty good reads - APi
+
+## For the frontend-repo, checkout [https://github.com/erlendoeien/pretty-good-reads](https://github.com/erlendoeien/pretty-good-reads)
 
 For live demo of the app, checkout ##HEROKU URL
 
-As a part of the course IT280 Web development, I and two others created this book review app. The main focus of this project was creating a
+As a part of the course IT2810 Web development, I and two others created this book review app. The main focus of this project was creating a
 full stack app. Additionally, some of the goals were to learn searching, sorting, pagination and filtering larger datasets. In our database, we
 have about 11k books and 9000 authors. The search is based on book title, authors and ISBNs (regular and ISBN-13). Though the UI does not include methods to filter the dataset, there are backend resolvers for it. There is also backend support for ordered sort options (e.g. sorting on title, the publication date), which is not part of the UI. The Pagination is offset/limit based as the book-dataset is static (as of now).
 
