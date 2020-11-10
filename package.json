@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "watch": "cross-env NODE_env=development tsc -w",
-        "prod-build": "cross-env NODE_ENV=production tsc",
+        "build": "cross-env NODE_ENV=production tsc",
         "start-dev": "cross-env NODE_env=development nodemon dist/src/index.js",
-        "start-prod": "cross-env NODE_ENV=production node dist/src/index.js",
+        "start": "cross-env NODE_ENV=production node dist/src/index.js",
         "format": "prettier --write src/**/*.ts{,x}",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color --fix",
         "test": "jest"

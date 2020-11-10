@@ -20,8 +20,11 @@ const main = async (prePopulate = false) => {
         type: 'postgres',
         url: process.env.DATABASE_URL,
         logging: !__prod__,
-        //synchronize: true,
-        entities: [`${__dirname}/entities/**/*.js`]
+        synchronize: true,
+        entities: [`${__dirname}/entities/**/*.js`],
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
     if (prePopulate) {
         await Book.delete({})
@@ -43,7 +46,7 @@ const main = async (prePopulate = false) => {
     app.use(
         cors({
             // If in production, cors dynamically based on origin
-            origin: __prod__ || process.env.CORS_ORIGIN,
+            origin: true, //__prod__ || process.env.CORS_ORIGIN,
             credentials: true
         })
     );
@@ -51,14 +54,19 @@ const main = async (prePopulate = false) => {
     const PGSession = connectPgSimple(session);
     app.use(
         session({
-            store: new PGSession(),
+            store: new PGSession({
+                conObject: {
+                    connectionString: process.env.DATABASE_URL,
+                    ssl: { rejectUnauthorized: false }
+                }
+            }),
             secret: process.env.COOKIE_SECRET,
             resave: false,
             cookie: {
                 maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
                 httpOnly: !__prod__,
                 sameSite: 'lax', // csrf
-                secure: __prod__ // cookie only works in https
+                secure: false //__prod__ // cookie only works in https
             },
             saveUninitialized: false
         })
