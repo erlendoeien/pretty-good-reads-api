@@ -20,7 +20,7 @@ const main = async (prePopulate = false) => {
         type: 'postgres',
         url: process.env.DATABASE_URL,
         logging: !__prod__,
-        synchronize: true,
+        // synchronize: true,
         entities: [`${__dirname}/entities/**/*.js`],
         ssl: {
             rejectUnauthorized: false
