@@ -80,7 +80,9 @@ const main = async (prePopulate = false) => {
         context: ({ req, res }) => ({
             req,
             res
-        })
+        }), // Must be disabled soon
+        playground: true,
+        introspection: true
     });
 
     server.applyMiddleware({
@@ -89,7 +91,7 @@ const main = async (prePopulate = false) => {
     });
     const port = __prod__ ? 3000 : 4000;
     app.listen(process.env.PORT || 4000, () => {
-        console.log(`🚀  Server ready at http://localhost:${port}`);
+        console.log(`🚀  Server ready at http://localhost:${process.env.PORT}`);
     });
 };
 
