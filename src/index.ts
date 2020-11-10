@@ -87,7 +87,7 @@ const main = async (prePopulate = false) => {
         app,
         cors: false
     });
-    const port = __prod__ ? 3000 : 4000;
+    const port = process.env.PORT || __prod__ ? 3000 : 4000;
     app.listen(port, () => {
         console.log(`🚀  Server ready at http://localhost:${port}`);
     });

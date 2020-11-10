@@ -1,0 +1,1 @@
+GET https://pretty-good-reads-api.herokuapp.com:3000/graphql
