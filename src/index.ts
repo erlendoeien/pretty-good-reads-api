@@ -46,7 +46,7 @@ const main = async (prePopulate = false) => {
     app.use(
         cors({
             // If in production, cors dynamically based on origin
-            origin: true, //__prod__ || process.env.CORS_ORIGIN,
+            origin: process.env.CORS_ORIGIN,
             credentials: true
         })
     );
