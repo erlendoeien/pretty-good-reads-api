@@ -43,6 +43,7 @@ const main = async (prePopulate = false) => {
         app.use(compression());
     }
 
+    app.set('trust proxy', 1);
     app.use(
         cors({
             // If in production, cors dynamically based on origin
