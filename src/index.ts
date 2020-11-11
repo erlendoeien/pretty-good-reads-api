@@ -65,7 +65,7 @@ const main = async (prePopulate = false) => {
             resave: false,
             cookie: {
                 maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-                httpOnly: true, //!__prod__,
+                httpOnly: !__prod__,
                 sameSite: 'lax', // csrf
                 secure: __prod__ // cookie only works in https
             },
