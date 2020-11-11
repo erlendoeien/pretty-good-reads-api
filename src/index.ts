@@ -43,7 +43,7 @@ const main = async (prePopulate = false) => {
         app.use(compression());
     }
 
-    app.set('trust proxy', 1);
+    app.enable('trust proxy');
     app.use(
         cors({
             // If in production, cors dynamically based on origin
@@ -63,11 +63,12 @@ const main = async (prePopulate = false) => {
             }),
             secret: process.env.COOKIE_SECRET,
             resave: false,
+            proxy: true,
             cookie: {
                 maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
                 httpOnly: !__prod__,
                 sameSite: 'lax', // csrf
-                secure: false //__prod__ // cookie only works in https
+                secure: __prod__ // cookie only works in https
             },
             saveUninitialized: false
         })
