@@ -89,7 +89,7 @@ const main = async (prePopulate = false) => {
         app,
         cors: false
     });
-    const port = __prod__ ? 3000 : 4000;
+    // const port = __prod__ ? 3000 : 4000;
     app.listen(process.env.PORT || 4000, () => {
         console.log(`🚀  Server ready at http://localhost:${process.env.PORT}`);
     });
