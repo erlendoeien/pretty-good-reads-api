@@ -63,12 +63,12 @@ const main = async (prePopulate = false) => {
             }),
             secret: process.env.COOKIE_SECRET,
             resave: false,
-            proxy: __prod__,
             cookie: {
                 maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
                 httpOnly: true, //!__prod__,
                 sameSite: 'lax', // csrf
-                secure: false // __prod__ // cookie only works in https
+                secure: false, // __prod__ // cookie only works in https
+                domain: __prod__ ? '.pretty-good-reads.herokuapp.com' : undefined
             },
             saveUninitialized: false
         })
