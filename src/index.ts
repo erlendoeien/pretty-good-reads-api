@@ -67,8 +67,7 @@ const main = async (prePopulate = false) => {
                 maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
                 httpOnly: true, //!__prod__,
                 sameSite: 'lax', // csrf
-                secure: false, // __prod__ // cookie only works in https
-                domain: __prod__ ? '.pretty-good-reads.herokuapp.com' : undefined
+                secure: __prod__ // cookie only works in https
             },
             saveUninitialized: false
         })
