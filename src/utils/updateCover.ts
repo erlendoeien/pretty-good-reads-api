@@ -13,7 +13,6 @@ const updateCover = (books: Book[], size = 'S') => {
                 { bookCoverUrl: `http://covers.openlibrary.org/b/isbn/${book.isbn}-${size}.jpg` }
             );
     });
-    console.log('Updated all');
 };
 
 export default updateCover;

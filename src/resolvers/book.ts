@@ -81,11 +81,11 @@ export class BookResolver {
 
         // Custom SQL to match for search
         // Could be included in filterOptions
-        const searchMatchString = `"Book"."title" ~ :searchQuery OR
-                            Book_authors.firstName ~ :searchQuery OR
-                            "Book"."isbn" ~ :searchQuery OR
-                            "Book"."isbn13" ~ :searchQuery OR Book_authors.lastName ~ :searchQuery`;
-        const searchMatchParameters = { searchQuery };
+        const searchMatchString = `LOWER("Book"."title") ~ :searchQuery OR
+                            LOWER(Book_authors.firstName) ~ :searchQuery OR
+                            LOWER("Book"."isbn") ~ :searchQuery OR
+                            "Book"."isbn13" ~ :searchQuery OR LOWER(Book_authors.lastName) ~ :searchQuery`;
+        const searchMatchParameters = { searchQuery: searchQuery.toLowerCase() };
 
         // Concatenate search + filter
         const isFilter = filterStatement.length > 0;

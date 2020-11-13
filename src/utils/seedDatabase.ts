@@ -27,9 +27,14 @@ export class Seeder {
      * -1 for the entire dataset
      */
     public async seedDatabase(lastRow = 1, newSchema = false) {
-        if (newSchema) this.createSessionTable();
+        if (newSchema) {
+            this.createSearchIndex();
+            this.createSessionTable();
+        }
+        // Get most popular data first
+        const data = seedData.sort((a, b) => a.ratings_count - b.ratings_count);
 
-        for (const row of seedData.slice(0, lastRow)) {
+        for (const row of data.slice(0, lastRow)) {
             const { authors, ...bookProps } = row;
             const splittedAuthors: Author[] = [];
 
@@ -62,6 +67,17 @@ export class Seeder {
             sess json NOT NULL,
             expire timestamp(6) without time zone NOT NULL
             );`);
+    }
+
+    /**
+     * Created some indices for the search query as using lower will skip usual indices
+     * Might be better to have single column indices, but must be analyzed further
+     * as the query is fetching a large number of rows. Might indicate that the index won't be used
+     */
+    private createSearchIndex() {
+        getConnection().createQueryRunner().query(`
+        CREATE INDEX idx_search_query ON book (lower(title), lower(isbn), isbn13 varchar_pattern_ops);
+        CREATE INDEX idx_author_search ON author (lower("firstName"), lower("lastName") varchar_pattern_ops);`);
     }
 
     /**

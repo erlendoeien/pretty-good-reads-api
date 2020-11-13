@@ -47,7 +47,7 @@ const main = async (prePopulate = false) => {
     app.use(
         cors({
             // If in production, cors dynamically based on origin
-            origin: process.env.CORS_ORIGIN,
+            origin: true, //process.env.CORS_ORIGIN,
             credentials: true
         })
     );
@@ -94,6 +94,7 @@ const main = async (prePopulate = false) => {
     });
 };
 
+// Give true as argument to seed DB
 main().catch((err) => {
     console.error(err);
 });

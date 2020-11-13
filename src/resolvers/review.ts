@@ -58,7 +58,6 @@ export class ReviewResolver {
         @Arg('input') input: ReviewInput,
         @Ctx() { req }: MyContext
     ) {
-        console.log(input);
         await Review.create({
             ...input,
             reviewItemId: bookId,

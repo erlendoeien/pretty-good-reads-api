@@ -4,6 +4,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    Index,
     JoinTable,
     ManyToMany,
     ManyToOne,
@@ -17,6 +18,7 @@ import { Author } from './Author';
 
 @ObjectType()
 @Entity()
+@Index('idx_search_query', { synchronize: false })
 export class Book extends BaseEntity {
     @Field()
     @PrimaryGeneratedColumn()

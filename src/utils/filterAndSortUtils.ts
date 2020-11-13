@@ -36,15 +36,12 @@ function _convertFilterValueType(field: ValidFilterField, value: string) {
     // Hardcoded switch case based on valid filter fields
     switch (filterColumnType) {
         case Number:
-            console.log('NUMBER');
             realValue = parseInt(value);
             break;
         case 'date':
-            console.log('DATE');
             realValue = new Date(value);
             break;
         case String:
-            console.log('STRING');
             realValue = value;
             break;
         default:
