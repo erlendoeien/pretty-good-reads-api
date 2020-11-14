@@ -32,7 +32,7 @@ export class Seeder {
             this.createSessionTable();
         }
         // Get most popular data first
-        const data = seedData.sort((a, b) => a.ratings_count - b.ratings_count);
+        const data = seedData.sort((a, b) => b.ratings_count - a.ratings_count);
 
         for (const row of data.slice(0, lastRow)) {
             const { authors, ...bookProps } = row;
